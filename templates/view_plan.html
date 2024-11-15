@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Meal Plan</h2>
+    <ul>
+        {% if plan['meals']['breakfast'] %}
+        <li><strong>Breakfast:</strong> {{ plan['meals']['breakfast'] | join(', ') }}</li>
+        {% endif %}
+        
+        {% if plan['meals']['lunch'] %}
+        <li><strong>Lunch:</strong> {{ plan['meals']['lunch'] | join(', ') }}</li>
+        {% endif %}
+        
+        {% if plan['meals']['dinner'] %}
+        <li><strong>Dinner:</strong> {{ plan['meals']['dinner'] | join(', ') }}</li>
+        {% endif %}
+        
+        {% if plan['meals']['snack'] %}
+        <li><strong>Snack:</strong> {{ plan['meals']['snack'] | join(', ') }}</li>
+        {% endif %}
+    </ul>
+
+    <h2>Workout Plan</h2>
+    <ul>
+        {% if plan['workout_plan'] %}
+            {% for workout in plan['workout_plan'] %}
+                <li>{{ workout }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No workout plan available.</li>
+        {% endif %}
+    </ul>
+
+    <h3>Daily Calorie Needs: {{ daily_calories }} calories</h3>
+
+    <a href="{{ url_for('create_plan') }}" class="btn">Create or Edit Plan</a>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 20px auto;
+    }
+
+    .container h2 {
+        color: #0d3a32;
+    }
+
+    .container h3 {
+        color: #245b47;
+    }
+
+    p {
+        font-size: 1.1em;
+        margin: 10px 0;
+    }
+
+    .btn {
+        background-color: #245b47;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    .btn:hover {
+        background-color: #224942;
+    }
+</style>
+{% endblock %}

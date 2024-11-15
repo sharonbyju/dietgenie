@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DietGenie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #224942;
+            padding: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .nav-links a,
+        .user-options a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .nav-links a:hover,
+        .user-options a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-link {
+            background-color: #192a3c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #245b47;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">DietGenie</div>
+        <div class="nav-links">
+            <a href="{{ url_for('create_plan') }}">Create Plan</a>
+            <a href="{{ url_for('view_plan') }}">View Plan</a>
+            <a href="{{ url_for('profile') }}">Edit Profile</a>
+        </div>
+        <div class="user-options">
+            {% if current_user.is_authenticated %}
+                <span>Welcome, {{ current_user.username }}!</span>
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button class="btn-logout">Logout</button>
+                </form>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-link">Sign In</a>
+                <a href="{{ url_for('register') }}" class="btn-link">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer">DietGenie &copy; 2023</footer>
+</body>
+</html>

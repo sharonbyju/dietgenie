@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>Your Profile</h2>
+    
+    <!-- Update Profile Form -->
+    <form method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="{{ user.email }}" required>
+    
+        <label for="dietary_preference">Dietary Preference</label>
+        <select name="dietary_preference" id="dietary_preference">
+            <option value="Vegan" {% if user.dietary_preference == 'Vegan' %}selected{% endif %}>Vegan</option>
+            <option value="Veg" {% if user.dietary_preference == 'Veg' %}selected{% endif %}>Veg</option>
+            <option value="Non-Veg" {% if user.dietary_preference == 'Non-Veg' %}selected{% endif %}>Non-Veg</option>
+        </select>
+    
+        <label for="activity_level">Activity Level</label>
+        <select name="activity_level" id="activity_level">
+            <option value="Low" {% if user.activity_level == 'Low' %}selected{% endif %}>Low</option>
+            <option value="Medium" {% if user.activity_level == 'Medium' %}selected{% endif %}>Medium</option>
+            <option value="High" {% if user.activity_level == 'High' %}selected{% endif %}>High</option>
+        </select>
+    
+        <label for="current_weight">Current Weight</label>
+        <input type="number" name="current_weight" id="current_weight" value="{{ user.current_weight }}" required>
+    
+        <label for="target_weight">Target Weight</label>
+        <input type="number" name="target_weight" id="target_weight" value="{{ user.target_weight }}" required>
+    
+        <label for="age">Age</label>
+        <input type="number" name="age" id="age" value="{{ user.age }}" required>
+    
+        <label for="height">Height (in cm)</label>
+        <input type="number" name="height" id="height" value="{{ user.height }}" required>
+    
+        <label for="gender">Gender</label>
+        <select name="gender" id="gender">
+            <option value="Male" {% if user.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Female" {% if user.gender == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Other" {% if user.gender == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+    
+        <label for="goal">Goal</label>
+        <input type="text" name="goal" id="goal" value="{{ user.goal }}" required>
+    
+        <button type="submit">Update Profile</button>
+    </form>
+    
+    </form>
+    
+    <form action="{{ url_for('delete_account') }}" method="POST" class="delete-form">
+        <button type="submit" class="btn-danger">Delete Account</button>
+    </form>
+    
+    
+</div>
+
+<style>
+    .profile-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;
+    }
+
+    .profile-container h2 {
+        color: #0d3a32;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+    }
+
+    button {
+        background-color: #245b47;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #224942;
+    }
+
+    .delete-form {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-danger {
+        background-color: #c62828;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        width: 100%;
+    }
+
+    .btn-danger:hover {
+        background-color: #b71c1c;
+    }
+</style>
+{% endblock %}

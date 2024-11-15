@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Welcome to Your Dashboard</h2>
+    <div class="dashboard-overview">
+        <p><strong>Current Weight:</strong> {{ user.current_weight }} kg</p>
+        <p><strong>Goal Progress:</strong> {{ user.goal_progress }}%</p>
+        <p><strong>Recommended Daily Calorie Intake:</strong> {{ user.daily_calories }} kcal</p>
+    </div>
+
+    <div class="dashboard-plans">
+        <h3>Your Personalized Plans</h3>
+        <p><strong>Diet Plan:</strong> {{ user.diet_plan }}</p>
+        <p><strong>Workout Plan:</strong> {{ user.workout_plan }}</p>
+    </div>
+</div>
+
+<style>
+    .dashboard {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 20px auto;
+    }
+
+    .dashboard h2 {
+        color: #0d3a32;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-overview p,
+    .dashboard-plans p {
+        font-size: 1.1em;
+        margin: 5px 0;
+    }
+
+    .dashboard-plans h3 {
+        margin-top: 20px;
+        color: #224942;
+    }
+</style>
+{% endblock %}
